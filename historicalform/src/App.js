@@ -1,11 +1,9 @@
 import axios from "axios";
 import {Component, useEffect, useState } from 'react';
-
-
 import logoText from './images/NB-Case-logoText.png';
 import logoImg from './images/NB-Case-logoImg.png';
 
-
+import MainForm from "./componentns/MainForm";
 
 
 function App() {
@@ -28,20 +26,15 @@ const [abc, setAbc] = useState("")
 
   return (
     <body id="body">
-      <main className="hero-cont">
-        {/* <button onClick={testFetch}></button> */}
+      <headder className="hero-cont">
         <img src={logoText} alt='text: Historical Form'></img>
         <img src={logoImg} alt='text: Historical Form'></img>
-        <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel diam tortor. Aliquam urna est, dapibus eu risus sed, auctor placerat enim. Nulla semper nulla massa. In eleifend, velit vel bibendum feugiat, nunc ex ultricies mauris, eget congue massa felis quis ante.</h4>
+        <h1>Antikkens Hellas eller Nordisk høymiddelalder?</h1>
+        <p>Gi oss en kort tilbakemelding på hvor din interesse ligger. Bare svar på et par spårsmål!</p>
+      </headder>
+      <main>
+        <MainForm/>
       </main>
-      <aside className="form-cont">
-        <form>
-          <h2>Antikkens Hellas eller Nordisk høymiddelalder?</h2>
-          <h3>Gi oss en kort tilbakemelding på hvor din interesse ligger. Bare svar på et par spørsmål!</h3>
-          <label></label>
-          <input></input>
-        </form>
-      </aside>
     </body>
   );
 }
