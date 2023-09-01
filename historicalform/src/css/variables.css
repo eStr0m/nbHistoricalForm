@@ -1,0 +1,58 @@
+:root {
+    /* __ TYPO __ */
+
+/* Font Size (px) */
+--fs-16: 1rem;
+--fs-18: 1.125rem;
+--fs-21: 1.313rem;
+--fs-33: 2.063rem;
+
+
+/* Font Weight */
+--fw-2: 200;
+--fw-4: 400;
+--fw-6: 600;
+
+/* Letter Spacing - number refers to figma % */
+--ls-4: 0.03em; 
+
+    /* __ COLOURS __ */
+
+/* Font Color/ BackGround/ Main / Color main+accent / BoXshadow */
+--fc: #191718;
+
+--clr-main: #f5f7fa;
+--clr-main: #E0E5E9;
+--clr-acc-blue: #0A62D0;
+--clr-acc-yellow: #F3D849;
+--clr-error: rgba(232, 105, 105, 0.979);
+
+--bg-solid: rgb(220,237,248);
+--bg-overlay: rgba(245, 247, 250, 0.20);
+--bg-darkmode: #000;
+--bg-gradient: linear-gradient(141deg, rgba(224,229,233,1) 0%, rgba(224,229,233,1) 20%, rgba(243,216,73,1) 21%, rgba(224,229,233,1) 36%, rgba(224,229,233,1) 44%, rgba(10,98,208,1) 45%, rgba(224,229,233,1) 95%, rgba(224,229,233,1) 100%);
+
+--shadow-btn: 0px 0px 4px rgba(25, 25, 27, 0.15);
+--shadow-txt: 0px 0px 4px rgba(245, 247, 250, 0.2);
+--shadow-img: 0px 4px 6px 1px rgba(25, 32, 44, 0.15);
+--shadow-bar: 0px 0px 3px rgba(25, 25, 27, 0.05);
+
+
+    /* __ SIZES __ */
+
+--navbar-height: 135px;
+--footer-height: 250px;
+--page-height-noscroll: calc(100vh - var(--navbar-height) - var(--footer-height));
+
+}
+
+
+@media (max-width: 1000px){
+    :root {
+            /* Font Size (px) */
+        --fs-16: 0.875rem;
+        --fs-21: 1.125rem; /*vurderer skifte til 1.125rem*/
+        --fs-33: 1.313rem;
+    }
+}
+

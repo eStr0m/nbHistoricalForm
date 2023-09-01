@@ -1,0 +1,21 @@
+{
+  "name": "hisfoserver",
+  "version": "1.0.0",
+  "description": "local server for historical forum webapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "Test command for Historical Form"
+  },
+  "keywords": [
+    "react.js",
+    "node.js",
+    "css",
+    "Nettbureau"
+  ],
+  "author": "E.Strom",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
