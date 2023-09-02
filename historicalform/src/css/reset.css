@@ -20,8 +20,8 @@ time, mark, audio, video, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
-    font-family: Raleway, sans-serif;
-    color: var(--fc);
+	font-family: 'Roboto', sans-serif;
+	color: var(--fc);
 }
 
 article, aside, details, figcaption, figure, 
@@ -33,14 +33,6 @@ footer, header, hgroup, menu, nav, section {
 } */
 ol, ul {
 	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
 }
 table {
 	border-collapse: collapse;

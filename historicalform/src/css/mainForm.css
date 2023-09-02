@@ -1,0 +1,108 @@
+form {
+  height: 100%;
+}
+
+.form-page {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+label {
+  margin-bottom: 5px;
+}
+
+
+/* https://moderncss.dev/pure-css-custom-styled-radio-buttons/ - source for radio input styling */
+
+input:not(input[type=radio]) {
+  width: 285px;
+  height: 40px;
+  margin-bottom: 28px;
+  padding-left: 1.25rem;
+  background-color: var(--clr-main);
+  border-radius: 300px;
+  box-shadow: var(--shadow-input);
+  outline: none;
+  border: none;
+  /* display: none; */
+}
+
+.radio-head {
+  width: 285px;
+  margin-top: 3rem;
+  margin-bottom: 2.25rem;
+  text-align: center;
+}
+
+input[type="radio"] {
+  appearance: none;
+  height: 1.6rem;
+  width: 1.6rem;
+  background-color: var(--clr-main);
+  border: 2px solid var(--clr-yellow);
+  border-radius: 100%;
+  translate:0 -25%;
+  display: grid;
+  place-content: center;
+}
+
+input[type="radio"]::before {
+  content: '';
+  width:1rem;
+  height:1rem;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1rem 1rem var(--clr-yellow);
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+.label-radio {
+  display: grid;
+  grid-template-columns: 1.5rem auto;
+  gap:1.25rem;
+  margin-bottom: 1rem;
+}
+
+
+.form-btn-cont {
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* justify-content: space-between; */
+}
+
+.button {
+  background-color: var(--clr-lightblue-opac-80);
+  border-radius: 300px;
+  box-shadow: var(--shadow-btn);
+  display: grid;
+  place-content: center;
+}
+
+.button:hover,
+.button:focus {
+  cursor: pointer;
+  transform: scale(1.05);
+  background-color: var(--clr-lightblue);
+}
+
+.button.btn-submit {
+  width: 7rem;
+  height: 2.5rem;
+  margin-left: auto;
+}
+.button.btn-page {
+  width: 6rem;
+  height: 1.7rem;
+}
+

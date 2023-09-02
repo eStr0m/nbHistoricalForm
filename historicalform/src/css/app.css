@@ -1,0 +1,96 @@
+/* ___ GLOBAL CLASSES ___ */
+
+.flex-cen-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.display-none {display: none !important;}
+.display-block{display: block !important;}
+.display-flex{display: flex !important;}
+
+/* ___ MAIN STYLING ___ */
+.body {
+    width: 100%;
+    height: 100vh;
+    background:var(--bg-gradient);
+    justify-content: flex-start !important;
+    position: relative;
+    overflow: hidden;
+}
+
+header {
+    margin: 3rem 2rem ;
+    position: relative;
+    z-index: 100;
+}
+
+.header-logo{
+    width:450px;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    margin-bottom: 1rem;
+}
+
+main {
+    flex-direction: row-reverse !important;
+    align-items: flex-start !important;
+    gap: 6rem;
+    position: relative;
+    z-index: 100;
+}
+
+.main-txt-cont {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.main-txt-cont h1{
+    margin-bottom: 2rem;
+}
+
+.form-cont  {
+    height: 630px;
+    width: 365px;
+    padding: 2.5rem 0;
+    background-color: var(--bg-transparent);
+    border-radius: 25px;
+    box-shadow: var(--shadow-form);
+    position: relative;
+    z-index: 100;
+}
+
+
+
+
+
+
+/* ___ DECORATIONAL STRIPES ___ */
+
+.deco-stripe {
+    height:400vw;
+    position: absolute;
+    rotate: 39deg;
+    translate: 0 -50%;
+    z-index: 0;
+}
+
+.deco-stripe.blue {
+    width: 115px;
+    background-color: var(--clr-blue);
+    opacity: 25%;
+}
+
+.deco-stripe.yellow {
+    width: 40px;
+    background-color: var(--clr-yellow);
+    opacity: 45%;
+}
+
+.deco-stripe.b-1 {top:0; left:25%;}
+.deco-stripe.y-1 {top:40%; left:100%;}
+.deco-stripe.b-2 {top:40%; left:110%;}

@@ -1,0 +1,52 @@
+h1 {
+  font-size: var(--fs-21);
+  font-weight: var(--fw-5); 
+}
+
+p {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-3); 
+}
+
+label {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-4); 
+}
+
+label.radio-head {
+  /* text-align: center; */
+}
+
+input {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-4); 
+}
+
+::placeholder {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-4);
+  color: var(--fc-faded);
+}
+
+.button {
+  text-shadow: var(--shadow-txt);
+  letter-spacing: var(--ls-4);
+  font-variant: small-caps;
+  color: #fff;
+}
+
+.button.btn-submit {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-5);
+}
+
+.button.btn-page {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-4);
+}
+
+.error-msg {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-5);
+  color: var(--clr-error);
+}
