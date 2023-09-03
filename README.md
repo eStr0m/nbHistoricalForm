@@ -21,6 +21,8 @@ While I only applied as a frontend-developer, I decided to try solving more of t
 * Express
 * CORS
 * concurrently
+* dotenv
+* nodemailer
 
 ## Prerequisites
 * Node.js
