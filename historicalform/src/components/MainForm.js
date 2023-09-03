@@ -48,6 +48,7 @@ export default function MainForm(props) {
       email: '',
       pcode: '',
       applicant: 'Espen',
+      name: 'Espen'
     }
   });
 
@@ -62,39 +63,19 @@ export default function MainForm(props) {
     });
   };
 
-  // const onSubmit = (formData) => {
-  //   console.log("Data submitted... waiting for this to post:", formData)
-  //   setLoading(true)
-  //   axios.post("https://case.nettbureau.no/submit", formData).then(response => {
-  //     console.log("Post response: ", response)
-  //     setLoading(false)
-  //   })
-  //   .catch(error => {
-  //     console.log("Post Error!: ", error)
-  //     setLoading(false)
-  //   })
-  // };
-
-
-
-
-
-
   const onSubmit = (formData) => {
     console.log("Data submitted... waiting for this to post:", formData)
     setLoading(true)
-
-    axios.post('http://localhost:3000/submit', formData)
-    .then(response => {
-      console.log(response.data);
-      setLoading(false);
+    axios.post("https://case.nettbureau.no/submit", formData).then(response => {
+      console.log("Post response: ", response)
+      setLoading(false)
       setDidSend(true);
       clearFormFields();
     })
     .catch(error => {
-      console.error(error);
-      setLoading(false);
-    });
+      console.log("Post Error!: ", error)
+      setLoading(false)
+    })
   };
     
   return (
