@@ -30,6 +30,7 @@
 --clr-lightblue-opac-80: #569ef5cd;
 --clr-yellow: #F6A731;
 --clr-error: rgba(232, 105, 105, 0.979);
+--clr-error-opac-75: rgba(232, 105, 105, 0.75);
 
 --bg-transparent: rgba(224, 229, 233, 0.60);
 --bg-gradient: linear-gradient(129deg, rgba(228,237,245,1) 0%, rgba(190,210,222,1) 100%);

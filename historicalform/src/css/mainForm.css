@@ -163,6 +163,10 @@ input[type="radio"]:focus {
   right:0;
 }
 
+.error-radio {
+  position: static;
+  margin-bottom: 1rem;
+}
 
 /* HIDDEN */
 

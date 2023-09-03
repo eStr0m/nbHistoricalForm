@@ -4,25 +4,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import CustomController from './InputField.js'
+import InputField from './InputField.js'
 
 export default function MainForm() {
   const [formPage, setFormPage] = useState(1)
-  const errorClassTrue = ""
-
-
-
-  function formPageSelect() {
-    setFormPage(prev => {
-      console.log("New Form Page: ", formPage)
-      if(prev === 1) {
-        return (2)
-      }
-      if(prev === 2) {
-        return (1)
-      }
-    })
-  }
+  const [pageOneError, setPageOneError] = useState(false)
 
 
   const schema = yup.object().shape({
@@ -31,10 +17,10 @@ export default function MainForm() {
     lname: yup.string().required('Etternavn mangler'),
     phone: yup.string().matches(/^[49]\d{7}$/, 'Ugyldig mobilnummer').required('Mobilnummer mangler'),
     email: yup.string().email('Ugyldig epost').required('Epost mangler'),
-    pcode: yup.number().required('Postnummer mangler'),
+    pcode: yup.string().matches(/^\d{4}$/, 'Ugyldig postnummer').required('Postnummer mangler'),
   });
 
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const { control, handleSubmit, formState: { errors }, getValues } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       timeperiod: '',
@@ -47,6 +33,25 @@ export default function MainForm() {
     },
   });
 
+
+
+  function formPageSelect() {
+    setFormPage(prev => {
+      const radioFormData = getValues().timeperiod
+      if(prev === 2) {
+        return (1)
+      }
+      if(prev === 1 && radioFormData) {
+        setPageOneError(false)
+        return (2)
+      }else {
+        setPageOneError(true)
+        return (1)
+      }
+
+      
+    })
+  }
 
 
 
@@ -72,6 +77,7 @@ export default function MainForm() {
           render={({ field }) => (
             <>
               <label className="radio-head">Tidsperiode:</label>
+              {pageOneError && <p className='error-message error-radio'>Vennligst velg en tidsperiode</p>}
               <div>
                 <label className="label-radio">
                   <input
@@ -117,25 +123,25 @@ export default function MainForm() {
             </>
           )}
         />
+        
       </div>
 
+
+
+
       <div className="form-page page-2" style={{ display: `${formPage === 2 ? "flex" : "none"}` }}>
+        
         <Controller
           name="fname"
           control={control}
-          render={({ field }) => (
-            <div className='input-cont'>
-              <label htmlFor="fname">Fornavn</label>
-              <p className='error-message'>{errors.fname?.message}</p>
-              <span className='error-symbol' style={{ display: `${errors.fname ? "grid" : "none"}` }}>!</span>
-              <input
-                {...field}
-                id="fname"
-                type="text"
-                placeholder="Ola"
-                style={{ boxShadow: `var(--shadow-${errors.fname ? "error" : "input"})` }}
-              />
-            </div>
+          render={({ field, fieldState: { error } }) => (
+            <InputField 
+              field={field} 
+              errors={error}
+              label="Fornavn"
+              type="text"
+              placeholder="Ola"
+            />
           )}
         />
 
@@ -143,82 +149,55 @@ export default function MainForm() {
           name="lname"
           control={control}
           render={({ field, fieldState: { error } }) => (
-            <CustomController 
+            <InputField 
               field={field} 
               errors={error}
               label="Etternavn"
               type="text"
               placeholder="Normann"
             />
-            // <div className='input-cont'>
-            //   <label htmlFor="lname">Etternavn</label>
-            //   <p className='error-message'>{errors.lname?.message}</p>
-            //   <span className='error-symbol' style={{ display: `${errors.lname ? "grid" : "none"}` }}>!</span>
-            //   <input
-            //     {...field}
-            //     id="lname"
-            //     type="text"
-            //     placeholder="Normann"
-            //     style={{ boxShadow: `var(--shadow-${errors.lname ? "error" : "input"})` }}
-            //   />
-            // </div>
           )}
         />
 
         <Controller
           name="phone"
           control={control}
-          render={({ field }) => (
-            <div className='input-cont'>
-              <label htmlFor="phone">Mobil</label>
-              <p className='error-message'>{errors.phone?.message}</p>
-              <span className='error-symbol' style={{ display: `${errors.phone ? "grid" : "none"}` }}>!</span>
-              <input
-                {...field}
-                id="phone"
-                type="tel"
-                placeholder="99988777"
-                style={{ boxShadow: `var(--shadow-${errors.phone ? "error" : "input"})` }}
-              />
-            </div>
+          render={({ field, fieldState: { error } }) => (
+            <InputField 
+              field={field} 
+              errors={error}
+              label="Mobil"
+              type="tel"
+              placeholder="99988777"
+            />
           )}
         />
 
         <Controller
           name="email"
           control={control}
-          render={({ field }) => (
-            <div className='input-cont'>
-              <label htmlFor="email">Epost</label>
-              <p className='error-message'>{errors.email?.message}</p>
-              <span className='error-symbol' style={{ display: `${errors.email ? "grid" : "none"}` }}>!</span>
-              <input
-                {...field}
-                id="email"
-                type="email"
-                placeholder="epost@mail.no"
-                style={{ boxShadow: `var(--shadow-${errors.email ? "error" : "input"})` }}
-              />
-            </div>
+          render={({ field, fieldState: { error } }) => (
+            <InputField 
+              field={field} 
+              errors={error}
+              label="Epost"
+              type="email"
+              placeholder="epost@mail.no"
+            />
           )}
         />
 
         <Controller
           name="pcode"
           control={control}
-          render={({ field }) => (
-            <div className='input-cont'>
-              <label htmlFor="pcode">Postnummer</label>
-              <p className='error-message'>{errors.pcode?.message}</p>
-              <span className='error-symbol' style={{ display: `${errors.pcode ? "grid" : "none"}` }}>!</span>
-              <input
-                {...field}
-                id="pcode"
-                type="number"
-                placeholder="9900"
-                style={{ boxShadow: `var(--shadow-${errors.pcode ? "error" : "input"})` }}
-              />
-            </div>
+          render={({ field, fieldState: { error } }) => (
+            <InputField 
+              field={field} 
+              errors={error}
+              label="Postnummer"
+              type="text"
+              placeholder="9900"
+            />
           )}
         />
 
@@ -263,141 +242,5 @@ export default function MainForm() {
       </div>
     </form>
   );
-
-
-  // Backup code, before testing Yup:
-  // return (
-  //   <form className="flex-cen-col" onSubmit={handleSubmit}>
-
-  //     <div className="form-page page-1" style={{display:`${formPage === 1 ? "flex" : "none"}`}}>
-  //       <label className="radio-head">Tidsperiode:</label>
-  //       <div>
-  //         <label className="label-radio"> 
-  //           <input 
-  //             className="radio"
-  //             id="timeperiod"
-  //             name="timeperiod"
-  //             type="radio"
-  //             value="Antikken"
-  //             checked={formData.timeperiod === "Antikken"}
-  //             onChange={handleChange}
-  //           ></input>
-  //           Antikken
-  //         </label>
-          
-  //         <label className="label-radio"> 
-  //           <input 
-  //             className="radio"
-  //             id="timeperiod"
-  //             name="timeperiod"
-  //             type="radio"
-  //             value="Tidlig Middelalder"
-  //             checked={formData.timeperiod === "Tidlig Middelalder"}
-  //             onChange={handleChange}
-  //           ></input>
-  //           Tidlig Middelalder
-  //         </label>
-          
-  //         <label className="label-radio">
-  //           <input 
-  //             className="radio"
-  //             id="timeperiod"
-  //             name="timeperiod"
-  //             type="radio"
-  //             value="Høymiddelalder"
-  //             checked={formData.timeperiod === "Høymiddelalder"}
-  //             onChange={handleChange}
-  //           ></input>
-  //           Høymiddelalder
-  //         </label>
-          
-  //         <label className="label-radio"> 
-  //           <input 
-  //             className="radio"
-  //             id="timeperiod"
-  //             name="timeperiod"
-  //             type="radio"
-  //             value="Senmiddelalder"
-  //             checked={formData.timeperiod === "Senmiddelalder"}
-  //             onChange={handleChange}
-  //           ></input>
-  //           Senmiddelalder
-  //         </label>
-  //       </div>
-  //     </div>
-
-  //     <div className="form-page page-2" style={{display:`${formPage === 2 ? "flex" : "none"}`}}>
-  //       <label for="fname">Fornavn</label>
-  //       <input 
-  //         id="fname"
-  //         name="fname"
-  //         type="text"
-  //         placeholder="Ola"
-  //         value={formData.fname}
-  //         onChange={handleChange}
-  //       ></input>
-
-  //       <label for="lname">Etternavn</label>
-  //       <input 
-  //         id="lname"
-  //         name="lname"
-  //         type="text"
-  //         placeholder="Normann"
-  //         value={formData.lname}
-  //         onChange={handleChange}
-  //       ></input>
-
-  //       <label for="phone">Mobil</label>
-  //       <input 
-  //         id="phone"
-  //         name="phone"
-  //         type="tel"
-  //         placeholder="99988777"
-  //         value={formData.phone}
-  //         onChange={handleChange}
-  //       ></input>
-
-  //       <label for="email">Epost</label>
-  //       <input 
-  //         id="email"
-  //         name="email"
-  //         type="email"
-  //         placeholder="epost@mail.no"
-  //         value={formData.email}
-  //         onChange={handleChange}
-  //       ></input>
-
-  //       <label for="pcode">Postnummer</label>
-  //       <input 
-  //         id="pcode"
-  //         name="pcode"
-  //         type="number"
-  //         placeholder="9900"
-  //         value={formData.pcode}
-  //         onChange={handleChange}
-  //       ></input>     
-  //     </div>
-
-  //     <div className="form-btn-cont">
-  //       <div className ="button btn-page btn-next" 
-  //         onClick={formPageSelect} 
-  //         style={{display:`${formPage === 1 ? "grid" : "none"}`}}>
-  //         neste side
-  //       </div>
-
-  //       <div className ="button btn-page btn-prev" 
-  //         onClick={formPageSelect} 
-  //         style={{display:`${formPage === 2 ? "grid" : "none"}`}}>
-  //         tilbake
-  //       </div>
-
-  //       <button className ="button btn-submit"
-  //         type="submit" 
-  //         style={{display:`${formPage === 2 ? "grid" : "none"}`}}>
-  //         send inn
-  //       </button>
-  //     </div>
-  //   </form>
-  // );
 };
  
