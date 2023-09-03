@@ -1,21 +1,41 @@
-Dette er min Case submission til Nettbureau
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Packages](#packages)
+* [Prerequisites](#prerequisites)
+* [Setup](#setup)
 
-Hvordan teste lokalt:
-Sørg for at du har Node installert.
+## General info
+This is a Case given out by Nettbureau, as part of the hiring process.
+The webapp HistoricalForm is my submission. It is a simple form site to show some of my skills as a developer.
 
-steg 1: pull eller last ned mappen "nbHistoricalForm".
+While I only applied as a frontend-developer, I decided to try solving more of the fullstack problem. Becoming a fullstack-developer is my goal afterall.
 
-steg 2: åpne den i din valgte editor (bruker VSCODE selv).
+## Technologies
+* React.js
+* Node.js
 
-steg 3: Gjennom terminal, kjør "npm install" i root(nbHistoricalForm) mappen. Gjenta det samme i "server" og "historicalform" mappene.
+### Packages
+* yup-resolver
+* axios
+* Express
+* CORS
+* concurrently
 
-NB: Packages skal nå være installert. Det er blant annet React.js, yup-resolver, express, CORS, axios og concurrently.
+## Prerequisites
+* Node.js
 
-steg 4: Legg .env filen som ble sendt separat, inn i server mappen.
+## Setup
+1. clone repository
+```shell
+git clone https://github.com/eStr0m/nbhistoricalForm.git
+```
 
-steg 5: Gjennom terminal, kjør først "npm run start:backend", deretter "npm run start:frontend".
+2. Put the provided .env file in the server folder.
 
-OBS: Default skal backend kjøres på PORT 3000 og frontend på PORT 3001, men det hender at den ber om å kjøre på en annen. skal bare være å trykke "y" til den.
-
-Det skal nå være tut og kjør! 
-Anbefaler å ikke legge inn noen form for personlig informasjon, men bruke eksempel navn og steder for å teste applikasjonen.
+3. install from root folder:
+```shell
+npm install
+npm run dev-install
+npm run dev
+```
