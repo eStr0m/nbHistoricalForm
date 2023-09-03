@@ -9,12 +9,14 @@ function App() {
   useEffect( () => {
     axios.get("http://localhost:3000/test")
       .then(response => {
-        console.log(response.data);
+        console.log(response.data.message);
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
+
+  
 
   return (
     <div className="body flex-cen-col">
