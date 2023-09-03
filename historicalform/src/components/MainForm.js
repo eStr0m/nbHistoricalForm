@@ -31,7 +31,7 @@ export default function MainForm() {
     fname: yup.string().required('Fornavn mangler'),
     lname: yup.string().required('Etternavn mangler'),
     phone: yup.string().matches(/^[49]\d{7}$/, 'Ugyldig mobilnummer').required('Mobilnummer mangler'),
-    email: yup.string().email('Ugyldig epost').required('Epost mangler'),
+    email: yup.string().matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, 'Ugyldig epost').required('Epost mangler'),
     pcode: yup.string().matches(/^\d{4}$/, 'Ugyldig postnummer').required('Postnummer mangler'),
   });
 
@@ -59,29 +59,10 @@ export default function MainForm() {
   //   })
   // };
 
-
-
-
-
-
-  
-    // For local Server and Testing with it:
-
-    // const onSubmit = (formData) => {
-    //   console.log("Data submitted... waiting for this to post:", formData)
-    //   axios.post("http://localhost:3000/submit", formData)
-    //     .then(response => {
-    //       console.log(response.data);
-    //     })
-    //     .catch(error => {
-    //       console.error(error);
-    //     });
-    // };
     const onSubmit = (formData) => {
       console.log("Data submitted... waiting for this to post:", formData)
       axios.post('http://localhost:3000/submit', formData)
       .then(response => {
-        // Handle the server response here
         console.log(response.data);
       })
       .catch(error => {
@@ -210,7 +191,7 @@ export default function MainForm() {
               field={field} 
               errors={error}
               label="Epost"
-              type="email"
+              type="string"
               placeholder="epost@mail.no"
             />
           )}
