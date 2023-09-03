@@ -45,8 +45,15 @@ input {
   font-weight: var(--fw-4);
 }
 
-.error-msg {
+.error-message {
   font-size: var(--fs-12);
   font-weight: var(--fw-5);
   color: var(--clr-error);
+  letter-spacing: var(--ls-4);
+}
+
+.error-symbol {
+  color: var(--fc);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-5);
 }
