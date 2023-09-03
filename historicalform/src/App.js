@@ -5,7 +5,9 @@ import logo from "./images/NB-Case-logo.svg"
 import MainForm from "./components/MainForm.js";
 
 
-function App() {
+export default function App() {
+  const[didSend, setDidSend] = useState(false)
+
   useEffect( () => {
     axios.get("http://localhost:3000/test")
       .then(response => {
@@ -16,7 +18,14 @@ function App() {
       });
   }, []);
 
-  
+
+  function CheckIfSent(mailDidSend) {
+    if(mailDidSend){
+      setDidSend(true)
+    };
+
+  };
+
 
   return (
     <div className="body flex-cen-col">
@@ -31,20 +40,17 @@ function App() {
             <br></br>
             Bare svar på et par spårsmål!
           </p>
+          {didSend && <p className="submit-confirmation">Takk for at du tok deg tid til å svare!</p>}
         </section>
 
         <section className="form-cont flex-cen-col">
-          <MainForm/>
+          <MainForm handleIfSent={CheckIfSent}/>
         </section>
       </main>
-
-      
 
       <span className="deco-stripe blue b-1"></span>
       <span className="deco-stripe yellow y-1"></span>
       <span className="deco-stripe blue b-2"></span>
     </div>
   );
-}
-
-export default App;
+};

@@ -8,6 +8,11 @@ p {
   font-weight: var(--fw-3); 
 }
 
+.submit-confirmation {
+  font-weight: var(--fw-4);
+  letter-spacing: var(--ls-3);
+}
+
 label {
   font-size: var(--fs-16);
   font-weight: var(--fw-4); 

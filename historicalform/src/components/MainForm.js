@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, useFormContext } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import InputField from './InputField.js'
 
-export default function MainForm() {
+export default function MainForm(props) {
   const [formPage, setFormPage] = useState(1)
   const [pageOneError, setPageOneError] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [didSend, setDidSend] = useState(false)
+
 
   function formPageSelect() {
     setFormPage(prev => {
@@ -35,7 +38,7 @@ export default function MainForm() {
     pcode: yup.string().matches(/^\d{4}$/, 'Ugyldig postnummer').required('Postnummer mangler'),
   });
 
-  const { control, handleSubmit, formState: { errors }, getValues } = useForm({
+  const { control, handleSubmit, formState: { errors }, getValues, reset } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       timeperiod: '',
@@ -48,35 +51,52 @@ export default function MainForm() {
     }
   });
 
+  const clearFormFields = () => {
+    reset({
+      timeperiod: '',
+      fname: '',
+      lname: '',
+      phone: '',
+      email: '',
+      pcode: '',
+    });
+  };
+
   // const onSubmit = (formData) => {
-  //   // Handle form submission here
   //   console.log("Data submitted... waiting for this to post:", formData)
+  //   setLoading(true)
   //   axios.post("https://case.nettbureau.no/submit", formData).then(response => {
   //     console.log("Post response: ", response)
+  //     setLoading(false)
   //   })
   //   .catch(error => {
   //     console.log("Post Error!: ", error)
+  //     setLoading(false)
   //   })
   // };
 
-    const onSubmit = (formData) => {
-      console.log("Data submitted... waiting for this to post:", formData)
-      axios.post('http://localhost:3000/submit', formData)
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    };
+
+
+
+
+
+  const onSubmit = (formData) => {
+    console.log("Data submitted... waiting for this to post:", formData)
+    setLoading(true)
+
+    axios.post('http://localhost:3000/submit', formData)
+    .then(response => {
+      console.log(response.data);
+      setLoading(false);
+      setDidSend(true);
+      clearFormFields();
+    })
+    .catch(error => {
+      console.error(error);
+      setLoading(false);
+    });
+  };
     
-
-
-
-
-  
-
-
   return (
     <form className="flex-cen-col" onSubmit={handleSubmit(onSubmit)}>
 
@@ -263,8 +283,9 @@ export default function MainForm() {
         <button className ="button btn-submit"
           type="submit" 
           style={{display:`${formPage === 2 ? "grid" : "none"}`}}>
-          send inn
+          {loading ? "sender..." : "send inn"}
         </button>
+        {props.handleIfSent(didSend)}
       </div>
     </form>
   );

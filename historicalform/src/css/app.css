@@ -53,6 +53,11 @@ main {
     margin-bottom: 2rem;
 }
 
+.submit-confirmation {
+    margin-top: 3rem;
+    border-bottom: 2px solid var(--clr-yellow);
+}
+
 .form-cont  {
     height: 630px;
     width: 365px;
