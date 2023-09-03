@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 export default function CustomController({ field, errors, label, type, placeholder }) {
   const hasError = !!errors;
-  console.log(errors)
   return (
     <div className={`input-cont${hasError ? ' has-error' : ''}`}>
       <label htmlFor={field.name}>{label}</label>

@@ -10,6 +10,21 @@ export default function MainForm() {
   const [formPage, setFormPage] = useState(1)
   const [pageOneError, setPageOneError] = useState(false)
 
+  function formPageSelect() {
+    setFormPage(prev => {
+      const radioFormData = getValues().timeperiod
+      if(prev === 2) {
+        return (1)
+      };
+      if(prev === 1 && radioFormData) {
+        setPageOneError(false)
+        return (2)
+      }else {
+        setPageOneError(true)
+        return (1)
+      };      
+    })
+  };
 
   const schema = yup.object().shape({
     timeperiod: yup.string().required('Velg en tidsperiode'),
@@ -29,43 +44,57 @@ export default function MainForm() {
       phone: '',
       email: '',
       pcode: '',
-      applicant:'',
-    },
+      applicant: 'Espen',
+    }
   });
 
-
-
-  function formPageSelect() {
-    setFormPage(prev => {
-      const radioFormData = getValues().timeperiod
-      if(prev === 2) {
-        return (1)
-      }
-      if(prev === 1 && radioFormData) {
-        setPageOneError(false)
-        return (2)
-      }else {
-        setPageOneError(true)
-        return (1)
-      }
-
-      
-    })
-  }
+  // const onSubmit = (formData) => {
+  //   // Handle form submission here
+  //   console.log("Data submitted... waiting for this to post:", formData)
+  //   axios.post("https://case.nettbureau.no/submit", formData).then(response => {
+  //     console.log("Post response: ", response)
+  //   })
+  //   .catch(error => {
+  //     console.log("Post Error!: ", error)
+  //   })
+  // };
 
 
 
 
-  const onSubmit = (formData) => {
-    // Handle form submission here
-    console.log("Data submitted... waiting for this to post:", formData)
-    // axios.post("https://case.nettbureau.no/submit", formData).then(response => {
-    //   console.log("Post response: ", response)
-    // })
-    // .catch(error => {
-    //   console.log("Post Error!: ", error)
-    // })
-  };
+
+
+  
+    // For local Server and Testing with it:
+
+    // const onSubmit = (formData) => {
+    //   console.log("Data submitted... waiting for this to post:", formData)
+    //   axios.post("http://localhost:3000/submit", formData)
+    //     .then(response => {
+    //       console.log(response.data);
+    //     })
+    //     .catch(error => {
+    //       console.error(error);
+    //     });
+    // };
+    const onSubmit = (formData) => {
+      console.log("Data submitted... waiting for this to post:", formData)
+      axios.post('http://localhost:3000/submit', formData)
+      .then(response => {
+        // Handle the server response here
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    };
+    
+
+
+
+
+  
+
 
   return (
     <form className="flex-cen-col" onSubmit={handleSubmit(onSubmit)}>
@@ -211,7 +240,23 @@ export default function MainForm() {
                 {...field}
                 id="applicant"
                 type="text"
-                value="E Strom Testington"
+                value="Espen"
+                className="hiddenField"
+              />
+            </>
+          )}
+        />
+        <Controller
+          name="name"
+          control={control}
+          render={({ field }) => (
+            <>
+              <label htmlFor="name" className="hiddenField">Hidden Field</label>
+              <input
+                {...field}
+                id="name"
+                type="text"
+                value="Espen"
                 className="hiddenField"
               />
             </>

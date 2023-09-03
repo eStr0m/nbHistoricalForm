@@ -6,23 +6,15 @@ import MainForm from "./components/MainForm.js";
 
 
 function App() {
-
-  const [abc, setAbc] = useState("")
- 
-
   useEffect( () => {
-    axios.get("http://localhost:3000/abc")
+    axios.get("http://localhost:3000/test")
       .then(response => {
-        console.log(response.data.status);
-        setAbc(response.data.status)
+        console.log(response.data);
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
-
-
-
 
   return (
     <div className="body flex-cen-col">
