@@ -6,10 +6,8 @@
 * [Setup](#setup)
 
 ## General info
-This is a Case given out by Nettbureau, as part of the hiring process.
-The webapp HistoricalForm is my submission. It is a simple form site to show some of my skills as a developer.
+Small webapp to play around with API and setting up server.
 
-While I only applied as a frontend-developer, I decided to try solving more of the fullstack problem. Becoming a fullstack-developer is my goal afterall.
 
 ## Technologies
 * React.js
